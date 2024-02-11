@@ -4,6 +4,7 @@
 
 ## Índice
 - [Modelo Entidad Relación](/modelo-er/)
+- [Modelo Relacional](/modelo-relacional/)
 ## Autores
 
 - [Francisco Javier Isaac Peña](https://github.com/Dhokthor369)
