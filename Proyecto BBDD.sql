@@ -10,7 +10,7 @@ CREATE TABLE Estudiantes (
 );
 
 
-INSERT INTO Estudiantes (DNI, Nombre, Apellidos, Email, DirecciónPostalId, TutorId) VALUES
+INSERT INTO Estudiantes (DNI, Nombre, Apellidos, Email, DireccionPostalId, TutorId) VALUES
   ('12345678A', 'Abdul', 'Rashid', 'abdulrashid@gmail.com', 1, 1),
   ('77777777T', 'Mohammed', 'Ali', 'mohammedali@gmail.com', 2, 2),
   ('87654321A', 'Mahmoud', 'Bahkahr', 'mahmoudbahkahr@gmail.com', 3, 3),
@@ -30,7 +30,7 @@ CREATE TABLE Direccion_Postal_Estudiante (
   Provincia TEXT
 );
 
-INSERT INTO Dirección_Postal_Estudiante (DirecciónPostalId, Calle, Número, Piso, Código Postal, Municipio, Provincia) VALUES
+INSERT INTO Direccion_Postal_Estudiante (DireccionPostalId, Calle, Numero, Piso, CodigoPostal, Municipio, Provincia) VALUES
   (1, 'Calle Hermoso', 55, 3, 99999, 'Alcalá de Henares', 'Madrid'),
   (2, 'Calle Pepe Alonso', 86, 5, 54321, 'Almonte', 'Huelva'),
   (3, 'Calle Bufala Petarda', 48, 2, 88888, 'Cartagena', 'Murcia'),
@@ -80,12 +80,12 @@ INSERT INTO Profesor_Estudiantes (id_profesor, DNI_Estudiante) VALUES
 CREATE TABLE Libros (
   LibroId INTEGER PRIMARY KEY,
   Nombre TEXT,
-  Género TEXT,
+  Genero TEXT,
   Biblioteca TEXT
 );
 
-INSERT INTO Libros (LibroId, Nombre, Género, Biblioteca) VALUES
-(1, 'Amor y balas', 'Acción', 'Biblioteca La Esperanza'),
+INSERT INTO Libros (LibroId, Nombre, Genero, Biblioteca) VALUES
+(1, 'Amor y balas', 'Accion', 'Biblioteca La Esperanza'),
 (2, '50 años', 'Drama', 'Biblioteca UniversoLibro'),
 (3, 'El fugitivo de Londres', 'Suspense', 'Biblioteca Planeta Libro'),
 (4, 'La niña vestida de blanco', 'Terror', 'Biblioteca Pedroche');
@@ -115,14 +115,14 @@ CREATE TABLE Empresas_asociadas (
   EmpresaId INTEGER PRIMARY KEY,
   Nombre TEXT,
   Evento TEXT,
-  Instalación_deportiva TEXT
+  Instalacion_deportiva TEXT
 );
 
-INSERT INTO Empresas_asociadas (EmpresaId, Nombre, Evento, Instalación_deportiva) VALUES
-(1, 'Empresa 1', 'Evento 1', 'Instalación 1'),
-(2, 'Empresa 2', 'Evento 2', 'Instalación 2'),
-(3, 'Empresa 3', 'Evento 3', 'Instalación 3'),
-(4, 'Empresa 4', 'Evento 4', 'Instalación 4');
+INSERT INTO Empresas_asociadas (EmpresaId, Nombre, Evento, Instalacion_deportiva) VALUES
+(1, 'Empresa 1', 'Evento 1', 'Instalacion 1'),
+(2, 'Empresa 2', 'Evento 2', 'Instalacion 2'),
+(3, 'Empresa 3', 'Evento 3', 'Instalacion 3'),
+(4, 'Empresa 4', 'Evento 4', 'Instalacion 4');
 
 
 
@@ -247,7 +247,7 @@ CREATE TABLE Cursos (
   FOREIGN KEY (ProfesorId) REFERENCES Profesores(ProfesorId)
 );
 
-INSERT INTO Cursos (CursoId, ProgramaAcademicoId, ProfesorId) VALUES
+INSERT INTO Cursos (CursoId, ProgramaAcademicoId, Nombre, ProfesorId) VALUES
 (1, 1, 'Curso 1', 1),
 (2, 2, 'Curso 2', 2),
 (3, 1, 'Curso 3', 3),
@@ -290,16 +290,16 @@ INSERT INTO Aulas_Cursos (CursoId, AulaId) VALUES
 
 
 
-CREATE TABLE Programas_académicos (
+CREATE TABLE Programas_academicos (
   ProgramaAcademicoId INTEGER PRIMARY KEY,
   Nombre TEXT,
   Departamento TEXT,
   Empleado_administrativo TEXT
 );
 
-INSERT INTO Programas_académicos (ProgramaAcademicoId, Nombre, Departamento, Empleado_Administrativo) VALUES
-(1, 'Programa académico 1', 'Departamento 1', 'Empleado Administrativo 1'),
-(2, 'Programa académico 2', 'Departamento 2', 'Empleado Administrativo 2');
+INSERT INTO Programas_academicos (ProgramaAcademicoId, Nombre, Departamento, Empleado_Administrativo) VALUES
+(1, 'Programa academico 1', 'Departamento 1', 'Empleado Administrativo 1'),
+(2, 'Programa academico 2', 'Departamento 2', 'Empleado Administrativo 2');
 
 
 
@@ -308,7 +308,7 @@ INSERT INTO Programas_académicos (ProgramaAcademicoId, Nombre, Departamento, Em
 CREATE TABLE Programas_Estudiantes (
   ProgramaAcademicoId INTEGER,
   DNI_Estudiante TEXT,
-  FOREIGN KEY (ProgramaAcademicoId) REFERENCES Programas_académicos(ProgramaAcademicoId),
+  FOREIGN KEY (ProgramaAcademicoId) REFERENCES Programas_academicos(ProgramaAcademicoId),
   FOREIGN KEY (DNI_Estudiante) REFERENCES Estudiantes(DNI_Estudiante)
 );
 
