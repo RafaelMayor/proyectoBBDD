@@ -199,7 +199,86 @@ __Programas_Estudiantes__
 
 ## Creación e inserción de tablas BBDD sqlite3
 
+## CREATE TABLE
 
+**Estudiantes:**
+
+```sql
+CREATE TABLE Estudiantes (
+  DNI TEXT PRIMARY KEY,
+  Nombre TEXT,
+  Apellidos TEXT,
+  Email TEXT,
+  DireccionPostalId INTEGER,
+  TutorId INTEGER,
+  FOREIGN KEY (DireccionPostalId) REFERENCES Direccion_Postal_Estudiante(DireccionPostalId),
+  FOREIGN KEY (TutorId) REFERENCES Profesores(id_profesor)
+);
+
+
+INSERT INTO Estudiantes (DNI, Nombre, Apellidos, Email, DirecciónPostalId, TutorId) VALUES
+  ('12345678A', 'Abdul', 'Rashid', 'abdulrashid@gmail.com', 1, 1),
+  ('77777777T', 'Mohammed', 'Ali', 'mohammedali@gmail.com', 2, 2),
+  ('87654321A', 'Mahmoud', 'Bahkahr', 'mahmoudbahkahr@gmail.com', 3, 3),
+  ('55555555S', 'Ahmet', 'Walid', 'ahmetwalid@gmail.com', 4, 4);
+```
+
+**Dirección_Postal_Estudiante:**
+
+```sql
+CREATE TABLE Direccion_Postal_Estudiante (
+  DireccionPostalId INTEGER PRIMARY KEY,
+  Calle TEXT,
+  Numero INTEGER,
+  Piso INTEGER,
+  CodigoPostal INTEGER,
+  Municipio TEXT,
+  Provincia TEXT
+);
+
+INSERT INTO Dirección_Postal_Estudiante (DirecciónPostalId, Calle, Número, Piso, Código Postal, Municipio, Provincia) VALUES
+  (1, 'Calle Hermoso', 55, 3, 99999, 'Alcalá de Henares', 'Madrid'),
+  (2, 'Calle Pepe Alonso', 86, 5, 54321, 'Almonte', 'Huelva'),
+  (3, 'Calle Bufala Petarda', 48, 2, 88888, 'Cartagena', 'Murcia'),
+  (4, 'Calle Federico García', 45, 9, 11111, 'Pepino', 'Toledo');
+```
+
+**Profesores:**
+
+```sql
+CREATE TABLE Profesores (
+  id_profesor INTEGER PRIMARY KEY,
+  DNI TEXT,
+  Nombre TEXT,
+  Apellidos TEXT
+);
+
+INSERT INTO Profesores (id_profesor, DNI, Nombre, Apellidos) VALUES
+  (1, '89436578L', 'Mahamout', 'Mahanumahala'),
+  (2, '23095687P', 'Manolo', 'Piriquito'),
+  (3, '90909090X', 'Begoña', 'Gustavo'),
+  (4, '70145744K', 'Barramout', 'Altramushí');
+```
+
+**Profesor_Estudiantes:**
+
+```sql
+CREATE TABLE Profesor_Estudiantes (
+  id_profesor INTEGER,
+  DNI_Estudiante TEXT,
+  FOREIGN KEY (id_profesor) REFERENCES Profesores(id_profesor),
+  FOREIGN KEY (DNI_Estudiante) REFERENCES Estudiantes(DNI)
+);
+
+INSERT INTO Profesor_Estudiantes (id_profesor, DNI_Estudiante) VALUES
+  (1, '12345678A'),
+  (2, '77777777T'),
+  (3, '87654321A'),
+  (1, '55555555S'),
+  (2, '55555555S'),
+  (3, '55555555S'),
+  (4, '55555555S');
+```
 
 
 </div>
